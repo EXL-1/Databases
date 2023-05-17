@@ -53,3 +53,11 @@ CREATE TABLE licences (
     license_number NUMBER(10),
     license_type VARCHAR2(15);
 )
+
+CREATE TABLE driving_tests (
+    driving_test_id NUMBER(5),
+    test_date DATE,
+    test_time TIME,
+    test_id NUMBER(5),
+    learner_id NUMBER(5);
+)
