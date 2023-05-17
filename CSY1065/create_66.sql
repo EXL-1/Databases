@@ -1,7 +1,7 @@
 /* 
 CSY 1065_66 Databases Lucas Malik 28/04/2023
 -- run command @C:\Database\Databases_WorkFiles\scripts\CSY1065\create_66.sql
-connection string: CSY1065_66@STUDENT/22806287
+connection string: 
 */
 
 -- CREATE TABLES 
