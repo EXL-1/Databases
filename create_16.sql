@@ -46,3 +46,10 @@ CREATE TABLE learners (
     l_surname VARCHAR2(20),
     l_contact NUMBER(10) NOT NULL;
 )
+
+CREATE TABLE licences (
+    license_id NUMBER(5),
+    learner_id NUMBER(5),
+    license_number NUMBER(10),
+    license_type VARCHAR2(15);
+)
