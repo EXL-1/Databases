@@ -13,3 +13,9 @@ CREATE TABLE instructors (
     grade VARCHAR2 (5);
 
 )
+
+CREATE TABLE cars (
+    register_number NUMBER(7),
+    car_model VARCHAR2 (10) NOT NULL,
+    dc_location_id NUMBER(5);
+)
