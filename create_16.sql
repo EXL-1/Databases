@@ -28,3 +28,13 @@ CREATE TABLE courses (
     instructor_id NUMBER(5);
 
 )
+
+CREATE TABLE lessons (
+    lesson_id NUMBER(5),
+    learner_id NUMBER(5),
+    register_number NUMBER(5) NOT NULL,
+    course_id NUMBER(5),
+    lesson_date DATE,
+    lesson_time TIME;
+
+)
