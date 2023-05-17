@@ -1,7 +1,7 @@
 /*
 Lucas Malik Databases 29/04/2023
 run command @C:\Database\Databases_WorkFiles\scripts\CSY1065\alters_66.sql
-connection string: CSY1065_66@STUDENT/22806287
+connection string:
 */
 
 -- AlTER TABLES 
