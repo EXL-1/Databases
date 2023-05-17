@@ -9,7 +9,7 @@ CREATE TABLE instructors (
     firstname VARCHAR2(20),
     surname VARCHAR2(20),
     contact VARCHAR2(10) NOT NULL,
-    grade VARCHAR2(5));
+    grade CHAR(5));
 
 CREATE TABLE cars (
     register_number NUMBER(7),
@@ -28,8 +28,7 @@ CREATE TABLE lessons (
     learner_id NUMBER(5),
     register_number NUMBER(5) NOT NULL,
     course_id NUMBER(5),
-    lesson_date DATE,
-    lesson_time TIME);
+    lesson_date DATETIME );
 
 CREATE TABLE learners (
     learner_id NUMBER(5),
@@ -46,15 +45,14 @@ CREATE TABLE licences (
 
 CREATE TABLE driving_tests (
     driving_test_id NUMBER(5),
-    test_date DATE,
-    test_time TIME,
+    test_date DATETIME,
     test_id NUMBER(5),
     learner_id NUMBER(5));
 
 CREATE TABLE stages (
     stage_id NUMBER(5),
     stage_element NUMBER(10),
-    completion VARCHAR2(1),
+    completion CHAR(1),
     driving_test_id NUMBER(5));
 
 CREATE TABLE tests (
