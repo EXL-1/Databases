@@ -38,3 +38,11 @@ CREATE TABLE lessons (
     lesson_time TIME;
 
 )
+
+CREATE TABLE learners (
+    learner_id NUMBER(5),
+    learner_age NUMBER(2),
+    l_firstname VARCHAR2(20),
+    l_surname VARCHAR2(20),
+    l_contact NUMBER(10) NOT NULL;
+)
