@@ -68,3 +68,9 @@ CREATE TABLE stages (
     completion VARCHAR2(1),
     driving_test_id NUMBER(5);
 )
+
+CREATE TABLE tests (
+    test_id NUMBER(5),
+    test_category VARCHAR2(3),
+    test_type VARCHAR2(10);
+)
