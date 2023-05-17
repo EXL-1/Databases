@@ -1,6 +1,6 @@
 -- CSY 1065_66 Databases Lucas Malik 11/05/2023
 -- @C:\Database\Databases_WorkFiles\scripts\CSY1065\insert_66.sql
--- connection string: CSY1065_66@STUDENT/22806287
+-- connection string: 
 
 -- INSERT DATA 
 
