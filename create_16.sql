@@ -19,3 +19,12 @@ CREATE TABLE cars (
     car_model VARCHAR2 (10) NOT NULL,
     dc_location_id NUMBER(5);
 )
+
+CREATE TABLE courses (
+    course_id NUMBER(5),
+    lesson_category VARCHAR2(3),
+    course_level VARCHAR2(15),
+    price NUMBER(10),
+    instructor_id NUMBER(5);
+
+)
