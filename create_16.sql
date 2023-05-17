@@ -61,3 +61,10 @@ CREATE TABLE driving_tests (
     test_id NUMBER(5),
     learner_id NUMBER(5);
 )
+
+CREATE TABLE stages (
+    stage_id NUMBER(5),
+    stage_element NUMBER(10),
+    completion VARCHAR2(1),
+    driving_test_id NUMBER(5);
+)
