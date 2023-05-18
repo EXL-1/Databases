@@ -30,8 +30,6 @@ DROP CONSTRAINT pk_driving_tests;
 ALTER TABLE stages 
 DROP CONSTRAINT pk_stages;
 
-
-
 -- DROP TABLES 
 
 DROP TABLE locations;
