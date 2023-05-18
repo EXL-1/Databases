@@ -44,6 +44,12 @@ DROP CONSTRAINT fk_c_locations;
 ALTER TABLE courses
 DROP CONSTRAINT fk_c_istructors;
 
+ALTER TABLE lessons
+DROP CONSTRAINT fk_l_courses;
+
+ALTER TABLE lessons
+DROP CONSTRAINT fk_l_cars;
+
 
 -- DROP TABLES 
 
