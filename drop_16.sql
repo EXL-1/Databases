@@ -35,6 +35,8 @@ DROP CONSTRAINT pk_driving_tests;
 ALTER TABLE stages 
 DROP CONSTRAINT pk_stages;
 
+-- DROP FOREIGN KEYS
+
 ALTER TABLE instructors
 DROP CONSTRAINT fk_i_locations;
 
@@ -64,6 +66,18 @@ DROP CONSTRAINT fk_s_learners;
 
 ALTER TABLE stages
 DROP CONSTRAINT fk_s_tests;
+
+--DROP SEQUENCES
+
+DROP SEQUENCE seq_dc_location_id;
+
+DROP SEQUENCE seq_instructor_id;
+
+DROP SEQUENCE seq_course_id;
+
+DROP SEQUENCE seq_learner_id;
+
+DROP SEQUENCE seq_stage_id;
 
 
 -- DROP TABLES 
