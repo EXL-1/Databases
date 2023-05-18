@@ -50,6 +50,9 @@ DROP CONSTRAINT fk_l_courses;
 ALTER TABLE lessons
 DROP CONSTRAINT fk_l_cars;
 
+ALTER TABLE licences
+DROP CONSTRAINT fk_l_learners;
+
 
 -- DROP TABLES 
 
