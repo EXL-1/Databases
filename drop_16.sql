@@ -35,6 +35,9 @@ DROP CONSTRAINT pk_driving_tests;
 ALTER TABLE stages 
 DROP CONSTRAINT pk_stages;
 
+ALTER TABLE instructors
+DROP CONSTRAINT fk_i_locations;
+
 -- DROP TABLES 
 
 DROP TABLE locations;
