@@ -2,7 +2,7 @@ INSERT INTO locations (dc_location_id, ,name, address)
 VALUES (seq_dc_location_id.NEXTVAL, "PARK CAMPUS", "UNIVERSITY ROAD");
 
 INSERT INTO instructors(instructor_id, fname, sname, grade, contact details) 
-VALUES (10000, "MANDY" ,"MORRELL", "PASS", "chrismaowusu@gmail.com")
+VALUES (seq_instructor_id.NEXTVAL, "MANDY" ,"MORRELL", "PASS", "chrismaowusu@gmail.com")
 
 INSERT INTO courses(course_id, lesson_category, course_level, price)
 VALUES (4000, "CSY1030-STD", "COMPUTING","BSc", "£9250")
