@@ -53,6 +53,12 @@ DROP CONSTRAINT fk_l_cars;
 ALTER TABLE licences
 DROP CONSTRAINT fk_l_learners;
 
+ALTER TABLE driving_tests
+DROP CONSTRAINT fk_dt_learners;
+
+ALTER TABLE driving tests
+DROP CONSTRAINT fk_dt_tests;
+
 
 -- DROP TABLES 
 
