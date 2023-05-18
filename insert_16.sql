@@ -1,5 +1,5 @@
-INSERT INTO locations (dc_location_id, address)
-VALUES (50000, "NORTHAMPTON");
+INSERT INTO locations (dc_location_id, ,name, address)
+VALUES (seq_dc_location_id.NEXTVAL, "PARK CAMPUS", "UNIVERSITY ROAD");
 
 INSERT INTO instructors(instructor_id, fname, sname, grade, contact details) 
 VALUES (10000, "MANDY" ,"MORRELL", "PASS", "chrismaowusu@gmail.com")
