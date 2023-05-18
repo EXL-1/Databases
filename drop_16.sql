@@ -59,6 +59,12 @@ DROP CONSTRAINT fk_dt_learners;
 ALTER TABLE driving tests
 DROP CONSTRAINT fk_dt_tests;
 
+ALTER TABLE stages
+DROP CONSTRAINT fk_s_learners;
+
+ALTER TABLE stages
+DROP CONSTRAINT fk_s_tests;
+
 
 -- DROP TABLES 
 
