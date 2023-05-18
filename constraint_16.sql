@@ -78,6 +78,11 @@ REFERENCES cars (car_reg);
 ALTER TABLE licences
 ADD CONSTRAINT fk_l_learners
 FOREIGN KEY (learner_id)
-REFERENCES learners (learner_id)
+REFERENCES learners (learner_id);
+
+ALTER TABLE driving_tests
+ADD CONSTRAINT fk_dt_learners
+FOREIGN KEY (learner_id)
+REFERENCES learners (learner_id);
 
 -- CHECK CONSTRAINTS 
