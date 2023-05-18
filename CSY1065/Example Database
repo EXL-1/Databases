@@ -1,0 +1,381 @@
+/* Complete database - DO NOT COPY AND PASTE 
+ YOU MUST USE THE RUN COMMAND, this file is too big for the buffer */
+
+-- @C:\Database\Databases_WorkFiles\scripts\databaseexample.sql
+-- select 'drop table ' || table_name || ';' from user_tables;
+-- select 'drop sequence ' || sequence_name || ';' from user_sequences;
+
+ALTER SESSION SET NLS_DATE_FORMAT = 'DD-MON-YYYY'; 
+SELECT sysdate FROM dual;
+
+
+DROP TABLE students;
+DROP TABLE companies;
+DROP TABLE trainers;	
+DROP TABLE courses;	
+DROP TABLE subject_areas;
+DROP TABLE sites;
+DROP TABLE running_courses;
+DROP TABLE attendances;
+DROP TABLE invoice_items;	
+DROP TABLE invoices;
+
+DROP SEQUENCE seq_sites;
+DROP SEQUENCE seq_trainers;
+PURGE RECYCLEBIN;
+	
+
+CREATE  TABLE students (
+student_id      	NUMBER(4),
+student_firstname   VARCHAR2(10),
+student_surname   	VARCHAR2(12),
+street			VARCHAR2(20),
+city			VARCHAR2(15),
+country			VARCHAR2(15),
+tel_no          VARCHAR2(15),
+fax_no          NUMBER(15),
+gender    		VARCHAR2(1),
+dob	   			DATE,
+company_id		NUMBER(2));
+
+CREATE  TABLE trainers(
+trainers_id     NUMBER(4),
+t_firstname  	VARCHAR2(10),
+t_surname   	VARCHAR2(12),
+mentor          NUMBER(3),
+rate			NUMBER(5,2),
+contact_no      VARCHAR2(15));
+
+CREATE  TABLE companies (
+company_id      NUMBER(2),
+company_name    VARCHAR2(15),
+city            VARCHAR2(12),
+industry        VARCHAR2(15),
+no_employees    NUMBER(5),
+revenue         NUMBER(10),
+training_budget NUMBER(6));
+
+
+CREATE  TABLE courses (
+course_id       NUMBER(3),
+title           VARCHAR2(30),
+duration        NUMBER(2),
+cost            NUMBER(5),
+subject_id      NUMBER(2));
+	
+CREATE  TABLE subject_areas (
+subject_id      NUMBER(2),
+subject_name    VARCHAR2(30));
+
+CREATE  TABLE sites (
+site_id         NUMBER(2),
+address 	VARCHAR2(25),
+location        VARCHAR2(12));
+
+
+CREATE  TABLE running_courses (
+running_id     NUMBER(5),
+course_id       NUMBER(3),
+instructor_id   NUMBER(4),
+site_id         NUMBER(2),
+start_Date      DATE,
+max_no_students NUMBER(2));
+
+CREATE  TABLE attendances (
+running_id     NUMBER(5),
+student_id      NUMBER(4),
+evaluation      VARCHAR2(1),
+amount_paid     NUMBER(6,2));
+
+CREATE  TABLE invoice_items (
+invoice_item		NUMBER(5),
+student_surname		VARCHAR2(12), 
+course_title		VARCHAR2(30),
+start_date		DATE, 
+end_date		DATE, 
+amount			NUMBER(7,2) ,
+invoice_NUMBER		NUMBER(6) );
+
+CREATE TABLE invoices(
+invoice_NUMBER	NUMBER(6) ,
+company_id		NUMBER(2) ,
+billing_DATE	DATE DEFAULT SYSDATE,
+due_DATE		DATE DEFAULT (SYSDATE + 30));
+
+--SEQUENCES
+
+CREATE SEQUENCE seq_sites
+INCREMENT BY 1
+START WITH 1;
+
+CREATE SEQUENCE seq_trainers
+INCREMENT BY 1
+START WITH 99;
+
+
+ALTER TABLE sites
+MODIFY (location VARCHAR2(40));
+
+--Alter table
+ALTER TABLE trainers
+ADD (Car_Reg VARCHAR2(7));
+
+--NOT NULL constraint
+ALTER TABLE trainers
+MODIFY (contact_no NOT NULL);
+
+--Primary keys
+ALTER TABLE sites
+ADD CONSTRAINT pk_sites
+PRIMARY KEY (site_id);
+
+ALTER TABLE trainers
+ADD CONSTRAINT pk_trainers
+PRIMARY KEY (trainers_id);
+
+ALTER TABLE companies
+ADD CONSTRAINT pk_company
+PRIMARY KEY (company_id);
+
+--Unique keys
+ALTER TABLE trainers
+ADD CONSTRAINT uc_car_reg
+UNIQUE (car_reg);
+
+--Forgien Keys
+ALTER TABLE students
+ADD CONSTRAINT fk_s_company
+FOREIGN KEY (company_id)
+REFERENCES companies(company_id);
+
+--CHECK 
+
+ALTER TABLE students
+ADD CONSTRAINT ck_student_firstname
+CHECK (student_firstname = UPPER(student_firstname));
+
+ALTER TABLE students
+ADD CONSTRAINT ck_student_surname
+CHECK (student_surname = UPPER(student_surname));
+
+ALTER TABLE courses
+ADD CONSTRAINT ck_duration
+CHECK (duration IN ('3','5'));
+
+--COMPANY RECORDS
+INSERT INTO companies 
+(company_id, company_name, city, industry, no_employees, revenue, training_budget)
+VALUES (10, 'USCABLES', 'WASHINGTON', 'MANUFACTURING', 250, 4000000, 50000);
+
+INSERT INTO companies 
+(company_id, company_name, city, industry, no_employees, revenue, training_budget)
+VALUES (20, 'KODAK', 'HOUSTON', 'MANUFACTURING', 2500, 10000000, 100000);
+
+INSERT INTO companies 
+(company_id, company_name, city, industry, no_employees, revenue, training_budget)
+VALUES (30, 'KLM', 'AMSTERDAM', 'SERVICE', 5000, 11000000, 990000);
+
+INSERT INTO companies 
+(company_id, company_name, city, industry, no_employees, revenue, training_budget)
+VALUES (40, 'HAMBRO', 'LONDON', 'SERVICE', 2000, 6000000, 500000);
+
+INSERT INTO companies 
+(company_id, company_name, city, industry, no_employees, revenue, training_budget)
+VALUES (50, 'FORD', 'DETROIT', 'MANUFACTURING', 8000, 20000000, 100000);
+
+INSERT INTO companies 
+(company_id, company_name, city, industry, no_employees, revenue, training_budget)
+VALUES (60, 'CITYBANK', 'BOSTON', 'FINANCE', 3000, 5000000, 200000);
+
+INSERT INTO companies 
+(company_id, company_name, city, industry, no_employees, revenue, training_budget)
+VALUES (70, 'DISNEY', 'ORLANDO', 'ARTS', 2500, 10000000, 300000);
+
+
+--STUDENT RECORDS
+
+INSERT INTO students 
+(student_id, student_firstname, student_surname, street, city, country, tel_no, fax_no, gender, dob, company_id)
+VALUES (2000, 'TOM', 'BROWN', '111 BAY ROAD', 'BOSTON', 'UK','(617)342-2345', 6173422345, 'X', '01-FEB-1964', 20);
+
+INSERT INTO students 
+(student_id, student_firstname, student_surname, street, city, country, tel_no, fax_no, gender, dob, company_id)
+VALUES (2001, 'DICK', 'ADAMS', '7500 IMPERIAL BLVD', 'LOS ANGELES', 'USA','(213)334-2789', 2133342789, 'M', '22-MAR-1965', 30);
+
+INSERT INTO students 
+(student_id, student_firstname, student_surname, street, city, country, tel_no, fax_no, gender,dob, company_id)
+VALUES (2002, 'HARRY', 'COX_', '25 MISSION WAY', 'LEEDS', 'UK','(619)433-6845', 6194336845, 'M', '04-DEC-1963', 10);
+
+INSERT INTO students 
+(student_id, student_firstname, student_surname, street, city, country, tel_no, fax_no, gender ,dob, company_id)
+VALUES (2003, 'SALLY', 'TYLER', '544 42ND STREET', 'NEW YORK', 'USA','(212)444-9769', 2124449769, 'M', '13-JUN-1966', 20);
+
+INSERT INTO students 
+(student_id, student_firstname, student_surname, street, city, country, tel_no, fax_no, gender, dob, company_id)
+VALUES (2004, 'NANCY', 'GIBBS','111 VALLEY WAY', 'HULL', 'UK', '(714)346-2896', 7143462896, 'F', '15-JUL-1965', 10);
+
+INSERT INTO students 
+(student_id, student_firstname, student_surname, street, city, country, tel_no, fax_no, gender,dob, company_id)
+VALUES (2005, 'JENNY', 'ROSE', '100 NO WAY', 'NORTHAMPTON', 'UK','(415)334-2345', 4153342345, 'F', '16-SEP-1963', 10);
+
+INSERT INTO students 
+(student_id, student_firstname, student_surname, street, city, country, tel_no, fax_no, gender,dob, company_id)
+VALUES(2006, 'JENNY', 'ROSE', '4545 ORACLE DRIVE', 'SAN FRANCISCO', 'USA','(415)334-2345', 4153342345, 'F', '16-SEP-1963', 10);
+
+INSERT INTO students 
+(student_id, student_firstname, student_surname, street, city, country, tel_no, fax_no, gender,dob, company_id)
+VALUES (2007, 'FRANK', 'NELSON', '77 ELM STREET', 'BEDFORD', 'UK','(609)345-2346', 6093452346, 'M', '22-APR-1964',  20);
+
+INSERT INTO students 
+(student_id, student_firstname, student_surname, street, city, country, tel_no, fax_no, gender,dob, company_id)
+VALUES (2008, 'KEN', 'CRICK','22 GATE DRIVE', 'SAN FRANCISCO', 'USA', '(415)345-2313', 4153452313, 'M', '14-MAR-1965', 50);
+
+INSERT INTO students 
+(student_id, student_firstname, student_surname, street, city, country, tel_no, fax_no, gender,dob, company_id)
+VALUES (2009, 'NIGEL', 'TURNER', '111 BEACH PLACE', 'NORTHAMPTON', 'UK','(818)352-2511', 8183522511, 'M', '16-FEB-1962',10);
+
+INSERT INTO students 
+(student_id, student_firstname, student_surname, street, city, country, tel_no, fax_no, gender,dob, company_id)
+VALUES (2010, 'CARL', 'DUDLEY', '55 KNIGHTS COURT', 'LONDON', 'UK','(609)223-7890', 6092237890, 'M', '28-NOV-1967',20);
+
+INSERT INTO students 
+(student_id, student_firstname, student_surname, street, city, country, tel_no, fax_no, gender,dob, company_id)
+VALUES (2011, 'FREDDY', 'KRUEGER', '562 ELM STREET', 'TORONTO', 'CANADA','(713)726-9842', 7137269842, 'M', '18-OCT-1962', 50);
+
+INSERT INTO students 
+(student_id, student_firstname, student_surname, street, city, country, tel_no, fax_no, gender,dob, company_id)
+VALUES (2012, 'LILY', 'GREEN','111 CRUISING WAY', 'TORTOLA', 'BVI', '(809)342-9621', 8093429621, 'F', '14-MAY-1964', 30);
+
+INSERT INTO students 
+(student_id, student_firstname, student_surname, street, country, tel_no, fax_no, gender,dob,company_id)
+VALUES (2013, 'MARY', 'FRANKS', '45 KING STREET', 'OTTAWA', '01604 669912', 7132348521, 'F', '23-DEC-1965', 60);
+
+INSERT INTO students 
+(student_id, student_firstname, student_surname, street, city, country, tel_no, fax_no, gender,dob, company_id)
+VALUES (2014, 'JOE', 'FISHER', '456 CHAMPS-ELYSEES', 'PARIS', 'FRANCE','01604 004455', 7094527392, 'X', '22-NOV-1962', 50);
+
+INSERT INTO students 
+(student_id, student_firstname, student_surname, street, city, country, tel_no, fax_no, gender,dob, company_id)
+VALUES (2015, 'MICHAEL', 'MYERS', '13 ALL HALLOWS LANE', 'SEATTLE', 'USA','01604 100233', 9093526216, 'M', '15-AUG-1967', 10);
+
+INSERT INTO students 
+(student_id, student_firstname, student_surname, street, city, country, tel_no, fax_no, gender,dob, company_id)
+VALUES (2016, 'NICK', 'CARTER', '11 KAME HIGHWAY', 'BEDFORD', 'UK','01604 447588', 8082382358, 'M', '17-FEB-1964',20);
+
+INSERT INTO students 
+(student_id, student_firstname, student_surname, street, city, country, tel_no, fax_no, gender,dob, company_id)
+VALUES (2017, 'ASH', 'WOOD','56 KUNGSGATAN', 'STOCKHOLM', 'SWEDEN', '01604 999555', 8093422345, 'F', '01-MAR-1964', 60);
+
+INSERT INTO students 
+(student_id, student_firstname, student_surname, street, city, country, tel_no, fax_no, gender,dob, company_id)
+VALUES (2018, 'JASON', 'VORHEAS', '13 FRIDAY BLVD', 'SAN JUAN', 'PUERTO RICO','01604 896321', 9802472349, 'F', '01-SEP-1964', 20);
+
+INSERT INTO students 
+(student_id, student_firstname, student_surname, street, city, country, tel_no, fax_no, gender,dob, company_id)
+VALUES (2019, 'PETER', 'HALL', '45555 BIG STREET', 'DALLAS', 'USA','01604 456874', 7078432346, 'M', '22-FEB-1965', 10);
+
+INSERT INTO students 
+(student_id, student_firstname, student_surname, street, city, country, tel_no, fax_no, gender,dob, company_id)
+VALUES (2020, 'PAUL', 'MARKS', '177 AIRPORT ROAD', 'MILTON KEYNES', 'UK','01604 852963', 7063432345, 'M', '16-DEC-1964', 20);
+
+INSERT INTO students 
+(student_id, student_firstname, student_surname, street, city, country, tel_no, fax_no, gender,dob, company_id) 
+VALUES (2021, 'FRED', 'FLINTSTONE','177 AIRPORT ROAD', 'LUTON', 'UK', '01604 514975', 7478882929, 'M', '04-JUL-1904',20);
+
+
+--trainers RECORDS
+
+INSERT INTO trainers
+(trainers_id, t_firstname, t_surname, mentor, rate, contact_no)
+VALUES (101, 'MANDY', 'MORRELL', 400 , 6.50, '2403');
+
+INSERT INTO trainers
+(trainers_id, t_firstname, t_surname, mentor, rate, contact_no)
+VALUES (102, 'CAROLE', 'MORRELL', 400 , 7.50, '2403');
+
+INSERT INTO trainers
+(trainers_id, t_firstname, t_surname, mentor, rate, contact_no)
+VALUES (103, 'MICHAEL', 'SMITH', 400 , 5.70, '2403');
+
+INSERT INTO trainers
+(trainers_id, t_firstname, t_surname, mentor, rate, contact_no)
+VALUES (104, 'SUSIE', 'WATERS', 400 , 4.50, '2403');
+
+
+INSERT INTO courses VALUES (215, 'UNIX', 5, 1995, 10);
+INSERT INTO courses VALUES (315, 'C++', 5, 1995, 20);
+INSERT INTO courses VALUES (415, 'ADA', 3, 1500, 20);
+INSERT INTO courses VALUES (515, 'ORACLE', 5, 1995, 30);
+INSERT INTO courses VALUES (615, 'SYBASE', 3, 1200, 30);
+INSERT INTO courses VALUES (115, 'DOS', 3, 500, 10);
+INSERT INTO courses VALUES (715, 'VMS', 5, 995, 10);
+INSERT INTO courses VALUES (815, 'NETWARE', 5, 1995, 40);
+INSERT INTO courses VALUES (915, 'INFORMIX', 3, 1200, 30);
+
+--SUBJECT_AREA RECORDS
+
+INSERT INTO subject_areas VALUES (10, 'SYSTEMS');
+INSERT INTO subject_areas VALUES (20, 'LANGUAGES');
+INSERT INTO subject_areas VALUES (30, 'DBMS');
+INSERT INTO subject_areas VALUES (40, 'NETWORKS');
+
+--SITE RECORDS
+
+INSERT INTO sites VALUES (1, '3 PLACE DE CONCORDE','EUROPE CENTRAL');
+INSERT INTO sites VALUES (2, '1600 PENNSYLVANIA', 'USA');
+INSERT INTO sites VALUES (3, '22 TRAFALGAR SQUARE','EUROPE WEST');
+INSERT INTO sites VALUES (4, 'KINGS STREET 26', 'EUROPE NORTH');
+INSERT INTO sites VALUES (5,'343 ELM STREET', 'CANADA');
+INSERT INTO sites VALUES (6, '101 BoYLSTON STREET', 'USA');
+INSERT INTO sites VALUES (7, '1010 SPEED ROAD', 'USA' );
+INSERT INTO sites VALUES (8, '101 YOUNG ROAD', 'CANADA');
+ 
+--RUNNING_COURSE RECORDS
+
+INSERT INTO running_courses VALUES (1001, 315, 700, 1, '16-DEC-1994', 24);
+INSERT INTO running_courses VALUES (1002, 315, 263, 3, '16-JUL-1995', 20);
+INSERT INTO running_courses VALUES (1003, 915, 560, 7, '23-NOV-1996', 30);
+INSERT INTO running_courses VALUES (1004, 215, 263, 2, '26-SEP-1995', 24);
+INSERT INTO running_courses VALUES (1005, 815, 978, 3, '15-OCT-1995', 20);
+INSERT INTO running_courses VALUES (1006, 915, 560, 4, '04-JAN-1996', 22);
+INSERT INTO running_courses VALUES (1007, 615, 453, 4, '30-SEP-1995', 30);
+INSERT INTO running_courses VALUES (1008, 515, 835, 5, '20-JUN-1995', 24);
+INSERT INTO running_courses VALUES (1009, 315, 790, 4, '21-JUN-1995', 24);
+INSERT INTO running_courses VALUES (1010, 315, NULL, 4, '30-AUG-1997', 24);
+
+--ATTENDANCE RECORDS
+
+INSERT INTO attendances VALUES (1001,1111, 4, 1000);
+INSERT INTO attendances VALUES (1002,2299, NULL, 1000);
+INSERT INTO attendances VALUES (1003,4568, 3, 1200);
+INSERT INTO attendances VALUES (1002,6789, 4, 1150);
+INSERT INTO attendances VALUES (1005,9835, 3, 1995);
+INSERT INTO attendances VALUES (1006,9842, 4, 1000);
+INSERT INTO attendances VALUES (1006,1199, 4, 1200);
+INSERT INTO attendances VALUES (1006,3452, 2, 200);
+INSERT INTO attendances VALUES (1007,8390, 4, 1200);
+INSERT INTO attendances VALUES (1007,6474, 4, 900);
+INSERT INTO attendances VALUES (1008,8390, 4, 1000);
+INSERT INTO attendances VALUES (1003,1199, 4, 1000);
+INSERT INTO attendances VALUES (1001,6738, 4, 850);
+INSERT INTO attendances VALUES (1001,5556, 4, 1995);
+INSERT INTO attendances VALUES (1001,6263, 1, 1995);
+INSERT INTO attendances VALUES (1002,2346, 4, 1995);
+INSERT INTO attendances VALUES (1003,6901, 4, 1200);
+INSERT INTO attendances VALUES (1003,7652, 4, 1200);
+INSERT INTO attendances VALUES (1003,4631, 3, 1200);
+INSERT INTO attendances VALUES (1008,3459, 4, 1995);
+INSERT INTO attendances VALUES (1004,2299, 3, 1995);
+INSERT INTO attendances VALUES (1004,6789, 4, 1995);
+INSERT INTO attendances VALUES (1004,6263, 4, 1995);
+INSERT INTO attendances VALUES (1007,9842, 3, 1200);
+INSERT INTO attendances VALUES (1007,4631, 3, 1200);
+INSERT INTO attendances VALUES (1005,6738, 4, 1000);
+INSERT INTO attendances VALUES (1005,3459, 3, 1995);
+INSERT INTO attendances VALUES (1006,6474, 2, 1200);
+INSERT INTO attendances VALUES (1006,9835, 4, 1000);
+INSERT INTO attendances VALUES (1007,9835, 4, 1200);
+INSERT INTO attendances VALUES (1009,3459, 3, 4000);
+
+
+	
