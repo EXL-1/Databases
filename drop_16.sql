@@ -1,3 +1,37 @@
+-- DROP PRIMARY KEYS 
+
+ALTER TABLE locations 
+DROP CONSTRAINT pk_locations;
+
+ALTER TABLE instructors 
+DROP CONSTRAINT pk_instructors;
+
+ALTER TABLE cars 
+DROP CONSTRAINT pk_cars;
+
+ALTER TABLE courses 
+DROP CONSTRAINT pk_courses;
+
+ALTER TABLE lessons 
+DROP CONSTRAINT pk_lessons; 
+
+ALTER TABLE learners 
+DROP CONSTRAINT pk_learners; 
+
+ALTER TABLE licences 
+DROP CONSTRAINT pk_licences;
+
+ALTER TABLE tests 
+DROP CONSTRAINT pk_tests;
+
+ALTER TABLE driving_tests 
+DROP CONSTRAINT pk_driving_tests;
+
+ALTER TABLE stages 
+DROP CONSTRAINT pk_stages;
+
+
+
 -- DROP TABLES 
 
 DROP TABLE locations;
