@@ -62,3 +62,10 @@ CREATE TABLE tests (
     test_id NUMBER(5),
     test_category VARCHAR2(3),
     test_type VARCHAR2(10));
+    
+    -- CREATE SEQUENCES 
+    
+CREATE SEQUENCE seq_dc_location_id
+INCREMENT BY 1
+START WITH 1;
+
