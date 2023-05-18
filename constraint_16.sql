@@ -85,4 +85,9 @@ ADD CONSTRAINT fk_dt_learners
 FOREIGN KEY (learner_id)
 REFERENCES learners (learner_id);
 
+ALTER TABLE driving_tests
+ADD CONSTRAINT fk_dt_tests
+FOREIGN KEY (test_id)
+REFERENCES tests (test_id);
+
 -- CHECK CONSTRAINTS 
