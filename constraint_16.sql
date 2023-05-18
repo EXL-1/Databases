@@ -74,3 +74,5 @@ ALTER TABLE lessons
 ADD CONSTRAINT fk_l_cars 
 FOREIGN KEY (car_reg)
 REFERENCES cars (car_reg);
+
+-- CHECK CONSTRAINTS 
