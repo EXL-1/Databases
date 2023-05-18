@@ -103,3 +103,27 @@ REFERENCES tests (test_id);
 
 
 -- CHECK CONSTRAINTS 
+
+ALTER TABLE instructors 
+ADD CONSTRAINT ck_instructor_fname
+CHECK (firstname = UPPER(firstname));
+
+ALTER TABLE instructors
+ADD CONSTRAINT ck_instructor_lname
+CHECK (surname = UPPER(surname));
+
+ALTER TABLE lessons
+ADD CONSTRAINT ck_lesson_date
+CHECK (lesson_date = DATE(lesson_date));
+
+ALTER TABLE lessons
+ADD CONSTRAINT ck_lesson_time
+CHECK (lesson_time = DATETIME(lesson_time));
+
+ALTER TABLE learners
+ADD CONSTRAINT ck_learner_fname
+CHECK (l_firstname = UPPER(l_firstname));
+
+ALTER TABLE learners
+ADD CONSTRAINT ck_learners_sname
+CHECK (l_surname = UPPER(l_surname));
