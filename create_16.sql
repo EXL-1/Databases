@@ -46,7 +46,7 @@ CREATE TABLE learners (
 CREATE TABLE licences (
     license_id NUMBER(5), -- Primary Key
     learner_id NUMBER(5), -- Foreign Key
-    license_number NUMBER(10) NOT NULL, -- Important Data
+    license_num NUMBER(10) NOT NULL, -- Important Data
     license_type VARCHAR2(15)); -- Default 
 
 CREATE TABLE driving_tests (  
