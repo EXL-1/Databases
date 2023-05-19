@@ -5,67 +5,70 @@ SELECT sysdate FROM dual;
 -- CREATE TABLES 
 
 CREATE TABLE locations (
-    dc_location_id NUMBER(5),
-    name VARCHAR2(15),
-    address VARCHAR2(20));
+    dc_location_id NUMBER(5), -- Primary Key
+    name VARCHAR2(15), -- Optional data
+    address VARCHAR2(20) NOT NULL); -- Important Data
 
 CREATE TABLE instructors (
-    instructor_id NUMBER(5),
-    dc_location_id NUMBER(5),
-    firstname VARCHAR2(20),
-    surname VARCHAR2(20),
-    contact VARCHAR2(10) NOT NULL,
-    grade CHAR(5));
+    instructor_id NUMBER(5), -- Primary Key 
+    dc_location_id NUMBER(5) NOT NULL ,  -- MANDATORY Foreign Key 
+    firstname VARCHAR2(20), -- Check Constraint 
+    surname VARCHAR2(20), -- Check Constraint 
+    contact_no VARCHAR2(10) NOT NULL, -- Important Data
+    grade CHAR(5)); -- Check Constraint and Default 
 
 CREATE TABLE cars (
-    register_number NUMBER(7),
-    car_model VARCHAR2(10) NOT NULL,
-    dc_location_id NUMBER(5));
+    reg_num NUMBER(7), -- Primary Key 
+    car_model VARCHAR2(10) NOT NULL, -- Necessary Data
+    dc_location_id NUMBER(5) NOT NULL); -- MANDATORY Foreign Key
 
 CREATE TABLE courses (
-    course_id NUMBER(5),
-    lesson_category VARCHAR2(3),
-    course_level VARCHAR2(15),
-    price NUMBER(10),
-    instructor_id NUMBER(5));
+    course_id NUMBER(5), -- Primary Key
+    lesson_category VARCHAR2(3), - Default 
+    course_level VARCHAR2(15), -- Default
+    price NUMBER(10), 
+    instructor_id NUMBER(5) NOT NULL ); -- MANDATORY Foreign Key
 
 CREATE TABLE lessons (
-    lesson_id NUMBER(5),
-    learner_id NUMBER(5),
-    register_number NUMBER(5) NOT NULL,
-    course_id NUMBER(5),
-    lesson_date DATE );
+    lesson_id NUMBER(5), -- Primary Key
+    learner_id NUMBER(5), -- Foreign Key 
+    reg_num NUMBER(5) , -- Foreign Key
+    course_id NUMBER(5) NOT NULL, -- MANDATORY Foreign Key
+    lesson_date DATE ); -- Check Constraint 
 
 CREATE TABLE learners (
-    learner_id NUMBER(5),
-    learner_age NUMBER(2),
-    l_firstname VARCHAR2(20),
-    l_surname VARCHAR2(20),
-    l_contact NUMBER(10) NOT NULL);
+    learner_id NUMBER(5), -- Primary Key
+    learner_age NUMBER(2) NOT NULL , -- Important Data 
+    l_firstname VARCHAR2(20), -- Check Constraint 
+    l_surname VARCHAR2(20), -- Check Constraint 
+    l_contact_no NUMBER(10) NOT NULL); -- Important Data
 
 CREATE TABLE licences (
-    license_id NUMBER(5),
-    learner_id NUMBER(5),
-    license_number NUMBER(10),
-    license_type VARCHAR2(15));
+    license_id NUMBER(5), -- Primary Key
+    learner_id NUMBER(5), -- Foreign Key
+    license_number NUMBER(10) NOT NULL, -- Important Data
+    license_type VARCHAR2(15)); -- Default 
 
-CREATE TABLE driving_tests (
-    driving_test_id NUMBER(5),
-    test_date_time DATETIME,
-    test_id NUMBER(5),
-    learner_id NUMBER(5));
+CREATE TABLE driving_tests (  
+    test_date DATE, -- Check Constraint 
+    test_time DATE, -- Check Constraint 
+    test_id NUMBER(5), -- Foreign Key / Composite Key
+    learner_id NUMBER(5)); -- Foreign Key / Composite Key
 
 CREATE TABLE stages (
-    stage_id NUMBER(5),
+    stage_id NUMBER(5), -- Primary Key
     stage_element NUMBER(10),
-    completion CHAR(1),
-    driving_test_id NUMBER(5));
+    completion CHAR(1), -- Default 
+    learner_id NUMBER(5) NOT NULL, -- Mandatory Foreign Key / Pks
+    test_id NUMBER(5) NOT NULL ); -- Mandatory Foreign Key / Pks
 
 CREATE TABLE tests (
-    test_id NUMBER(5),
-    test_category VARCHAR2(3),
-    test_type VARCHAR2(10));
-    -- CREATE SEQUENCES 
+    test_id NUMBER(5), -- Primary Key
+    test_category VARCHAR2(3), -- Default 
+    test_type VARCHAR2(10)); -- Default 
+    
+    
+-- CREATE SEQUENCES 
     
 CREATE SEQUENCE seq_dc_location_id
 INCREMENT BY 1
