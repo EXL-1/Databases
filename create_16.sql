@@ -24,7 +24,7 @@ CREATE TABLE cars (
 
 CREATE TABLE courses (
     course_id NUMBER(5), -- Primary Key
-    lesson_category VARCHAR2(3), - Default 
+    lesson_category VARCHAR2(3), -- Default 
     course_level VARCHAR2(15), -- Default
     price NUMBER(10), 
     instructor_id NUMBER(5) NOT NULL ); -- MANDATORY Foreign Key
