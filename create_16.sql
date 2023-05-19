@@ -41,7 +41,7 @@ CREATE TABLE learners (
     learner_age NUMBER(2) NOT NULL , -- Important Data 
     l_firstname VARCHAR2(20), -- Check Constraint 
     l_surname VARCHAR2(20), -- Check Constraint 
-    l_contact_no NUMBER(10) NOT NULL); -- Important Data
+    l_contact_no VARCHAR2(10) NOT NULL); -- Important Data
 
 CREATE TABLE licences (
     license_id NUMBER(5), -- Primary Key
