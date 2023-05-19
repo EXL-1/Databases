@@ -66,14 +66,19 @@ FOREIGN KEY (instructor_id)
 REFERENCES instructors (instructor_id);
 
 ALTER TABLE lessons 
-ADD CONSTRAINT fk_l_courses 
-FOREIGN KEY (course_id)
-REFERENCES courses (course_id);
+ADD CONSTRAINT fk_l_learners 
+FOREIGN KEY (learner_id)
+REFERENCES learners (learner_id);
 
 ALTER TABLE lessons 
 ADD CONSTRAINT fk_l_cars 
 FOREIGN KEY (reg_num)
 REFERENCES cars (reg_num);
+
+ALTER TABLE lessons 
+ADD CONSTRAINT fk_l_courses 
+FOREIGN KEY (course_id)
+REFERENCES courses (course_id);
 
 ALTER TABLE licences
 ADD CONSTRAINT fk_l_learners
