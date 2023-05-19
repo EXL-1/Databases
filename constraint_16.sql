@@ -16,7 +16,7 @@ PRIMARY KEY (instructor_id);
 
 ALTER TABLE cars 
 ADD CONSTRAINT pk_cars 
-PRIMARY KEY (car_reg);
+PRIMARY KEY (reg_num);
 
 ALTER TABLE courses
 ADD CONSTRAINT pk_courses
@@ -72,8 +72,8 @@ REFERENCES courses (course_id);
 
 ALTER TABLE lessons 
 ADD CONSTRAINT fk_l_cars 
-FOREIGN KEY (car_reg)
-REFERENCES cars (car_reg);
+FOREIGN KEY (reg_num)
+REFERENCES cars (reg_num);
 
 ALTER TABLE licences
 ADD CONSTRAINT fk_l_learners
@@ -91,12 +91,12 @@ FOREIGN KEY (test_id)
 REFERENCES tests (test_id);
 
 ALTER TABLE stages
-ADD CONSTRAINT fk_s_learners
+ADD CONSTRAINT fk_s_driving_tests
 FOREIGN KEY (learner_id)
 REFERENCES learners (learner_id);
 
 ALTER TABLE stages
-ADD CONSTRAINT fk_s_tests
+ADD CONSTRAINT fk_s_driving_tests
 FOREIGN KEY (test_id)
 REFERENCES tests (test_id);
 
