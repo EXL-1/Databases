@@ -32,7 +32,7 @@ CREATE TABLE courses (
 CREATE TABLE lessons (
     lesson_id NUMBER(5), -- Primary Key
     learner_id NUMBER(5), -- Foreign Key 
-    reg_num NUMBER(5) , -- Foreign Key
+    reg_num NUMBER(7) , -- Foreign Key
     course_id NUMBER(5) NOT NULL, -- MANDATORY Foreign Key
     lesson_date DATE ); -- Check Constraint 
 
