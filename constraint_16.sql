@@ -131,7 +131,7 @@ CHECK (lesson_date = DATE(lesson_date));
 
 ALTER TABLE lessons
 ADD CONSTRAINT ck_lesson_time
-CHECK (lesson_time = DATETIME(lesson_time));
+CHECK (lesson_time = DATE(lesson_time));
 
 ALTER TABLE learners
 ADD CONSTRAINT ck_learner_fname
