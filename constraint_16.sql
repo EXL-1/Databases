@@ -151,3 +151,4 @@ CHECK (completion IN ('Y','N'));
 
 -- CHECK CONSTRAINT FOR NOT NULLS 
 
+-- DEFAULTS 
