@@ -4,11 +4,13 @@ SELECT sysdate FROM dual;
 
 -- ALTER TABLES 
 
-
 -- MODIFY TABLES 
 
 ALTER TABLE locations MODIFY(
 address VARCHAR2(20) NOT NULL);
+
+ALTER TABLE tests MODIFY(
+test_type VARCHAR2(12));
 
 -- PRIMARY KEYS 
 
