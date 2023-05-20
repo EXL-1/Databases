@@ -7,7 +7,7 @@ SELECT sysdate FROM dual;
 CREATE TABLE locations (
     dc_location_id NUMBER(5), -- Primary Key
     name VARCHAR2(15), -- Optional data
-    address VARCHAR2(20) NOT NULL); -- Important Data
+    address VARCHAR2(20)); -- Important Data
 
 CREATE TABLE instructors (
     instructor_id NUMBER(5), -- Primary Key 
