@@ -113,7 +113,11 @@ ADD CONSTRAINT fk_s_driving_tests
 FOREIGN KEY (test_id)
 REFERENCES tests (test_id);
 
+-- UNIQUE KEYS 
 
+ALTER TABLE licenses
+ADD CONSTRAINT uk_LN
+UNIQUE (license_num);
 
 -- CHECK CONSTRAINTS 
 
@@ -129,10 +133,6 @@ ALTER TABLE lessons
 ADD CONSTRAINT ck_lesson_date
 CHECK (lesson_date = DATE(lesson_date));
 
-ALTER TABLE lessons
-ADD CONSTRAINT ck_lesson_time
-CHECK (lesson_time = DATE(lesson_time));
-
 ALTER TABLE learners
 ADD CONSTRAINT ck_learner_fname
 CHECK (l_firstname = UPPER(l_firstname));
@@ -140,3 +140,14 @@ CHECK (l_firstname = UPPER(l_firstname));
 ALTER TABLE learners
 ADD CONSTRAINT ck_learners_sname
 CHECK (l_surname = UPPER(l_surname));
+
+ALTER TABLE driving_tests
+ADD CONSTRAINT ck_test_date
+CHECK (test_date = DATE(test_date));
+
+ALTER TABLE stages 
+ADD CONSTRAINT ck_completion 
+CHECK (completion IN ('Y','N'));
+
+-- CHECK CONSTRAINT FOR NOT NULLS 
+
